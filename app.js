@@ -4,6 +4,7 @@ const cards = document.getElementById('cards')
 const search = document.getElementById('Buscador')
 const templateList = document.getElementById('template-list').content
 const resultados = document.querySelector('.resultados')
+
 let resultado = {}
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -20,7 +21,7 @@ const fetchData = async () => {
     
     console.log(data)
     pintarCards(data)
-    filterResult(cityList)
+    filtrarBusqueda(cityList)
 
   } catch (error) {
     console.log(error)
@@ -39,11 +40,12 @@ const pintarCards = data => {
   const clone = templateCard.cloneNode(true)
   fragment.appendChild(clone)
   cards.appendChild(fragment)
-  
 }
 
 // Pintar Resultado de la Busqueda
 const pintarResultado = () => {
+  resultados.innerHTML  = ''
+
   Object.values(resultado).forEach(element => {
     templateList.querySelector('.lista').textContent = element.name
     templateList.querySelector('.lista').dataset.id = element.id
@@ -52,19 +54,25 @@ const pintarResultado = () => {
     fragment.appendChild(clone)
   });
   resultados.appendChild(fragment)
+  console.log(resultados)
   resultados.style.display = 'block'
 }
 
-const filterResult = (cityList) => {
+const filtrarBusqueda = (cityList) => {
   //console.log(name)
-  search.addEventListener('change', e => {
-    const result = cityList.filter(item => item.name === e.target.value)
-    if(result && result !== []){
-      console.log(result)
-      resultado = {...result}
+  search.addEventListener('keyup', e => {
+
+    for(let letter in e.target.value){
+      const result = cityList.filter(item => item.name[letter] === e.target.value[letter])
+      if(result && result !== []){
+        //console.log(result)
+        resultado = result
+      }
+      console.log(resultado)
+      pintarResultado()
     }
-    console.log(resultado)
-    pintarResultado()
+
+    e.stopPropagation()
   })
 }
 
