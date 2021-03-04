@@ -90,5 +90,5 @@ const pintarNuevo = objeto => {
   const stringCode = objeto.querySelector('li').dataset.id
   idCiudad = stringCode
   console.log(idCiudad)
-  pintarResultado()
+  fetchData()
 }
