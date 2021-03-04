@@ -6,19 +6,24 @@ const templateList = document.getElementById('template-list').content
 const resultados = document.querySelector('.resultados')
 
 let resultado = {}
+let idCiudad = '3431366'
 
 document.addEventListener('DOMContentLoaded', () => {
   fetchData()
 })
 
+resultados.addEventListener('click', e => {
+  ciudadSeleccionada(e)
+})
+
 // Obtener datos desde la URL
 const fetchData = async () => {
   try {
-    const resp = await fetch('http://api.openweathermap.org/data/2.5/weather?id=3435874&appid=1f5afdd7df9072b6abfe95afde66cc8a&lang=es')
+    const resp = await fetch(`http://api.openweathermap.org/data/2.5/weather?id=${idCiudad}&appid=1f5afdd7df9072b6abfe95afde66cc8a&lang=es`)
     const data = await resp.json()
     const api = await fetch('./city-list.json')
     const cityList = await api.json()
-    
+
     console.log(data)
     pintarCards(data)
     filtrarBusqueda(cityList)
@@ -29,8 +34,8 @@ const fetchData = async () => {
 }
 
 const pintarCards = data => {
-  
-  const {coord, main, sys, weather} = data
+
+  const { coord, main, sys, weather } = data
   templateCard.querySelector('h2').textContent = `${data.name} - ${sys.country}`
   templateCard.querySelector('h1').textContent = `${(main.temp - 273.15).toFixed(1)}°C`
   templateCard.querySelectorAll('h3')[0].textContent = `${weather[0].main}: ${weather[0].description}`
@@ -44,35 +49,46 @@ const pintarCards = data => {
 
 // Pintar Resultado de la Busqueda
 const pintarResultado = () => {
-  resultados.innerHTML  = ''
+  resultados.innerHTML = ''
 
   Object.values(resultado).forEach(element => {
-    templateList.querySelector('.lista').textContent = element.name
-    templateList.querySelector('.lista').dataset.id = element.id
-    
+    templateList.querySelector('.ciudad').textContent = element.name
+    templateList.querySelector('.ciudad').dataset.id = element.id
+
     const clone = templateList.cloneNode(true)
     fragment.appendChild(clone)
   });
   resultados.appendChild(fragment)
-  console.log(resultados)
   resultados.style.display = 'block'
+  
 }
 
 const filtrarBusqueda = (cityList) => {
-  //console.log(name)
-  search.addEventListener('keyup', e => {
 
-    for(let letter in e.target.value){
-      const result = cityList.filter(item => item.name[letter] === e.target.value[letter])
-      if(result && result !== []){
-        //console.log(result)
-        resultado = result
-      }
-      console.log(resultado)
+  search.addEventListener('keyup', e => {
+    let palabra = e.target.value
+    const result = cityList.filter(item => (item.name === palabra))
+
+    if (result) {
+      //console.log(result)
+      resultado = result
       pintarResultado()
     }
-
     e.stopPropagation()
   })
 }
 
+const ciudadSeleccionada = e => {
+  
+  if(e.target.classList.contains('ciudad')){
+    pintarNuevo(e.target.parentElement)
+  }
+  e.stopPropagation()
+}
+
+const pintarNuevo = objeto => {
+  const stringCode = objeto.querySelector('li').dataset.id
+  idCiudad = stringCode
+  console.log(idCiudad)
+  pintarResultado()
+}

@@ -119,6 +119,7 @@ span span {
 }
 
 .resultados{
+  max-height: 300px;
   display: none;
   max-width: 330px;
   z-index: 9;
@@ -128,14 +129,16 @@ span span {
   background-color: #FFF;
   border-radius: 10px 10px;
   box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
 }
 
-.lista {
+.ciudad {
   width: 100%;
   padding: 5px;
   list-style: none;
 }
 
-.lista:hover{
+.ciudad:hover{
+  cursor: pointer;
   background-color: #EBEBED;
 }
