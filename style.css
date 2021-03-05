@@ -48,7 +48,7 @@ h4 {
 
 .title {
   margin: 0 auto;
-  color: #FFF;
+  color: #fff;
 }
 
 h1 {
@@ -107,29 +107,30 @@ span span {
 
 /* SearchBar*/
 
-#Buscador{
+#Buscador {
   margin-top: 3%;
   width: 330px;
   margin: 0 auto;
-  border-radius:15px;
+  border-radius: 15px;
   background-size: 24px;
   border: transparent;
   padding: 10px 10px 10px 30px;
   outline: none;
 }
 
-.resultados{
+.resultados {
   max-height: 300px;
   display: none;
   max-width: 330px;
   z-index: 9;
   position: absolute;
   margin-top: 3%;
-  padding: 20px;
-  background-color: #FFF;
+  padding: 10px;
+  background-color: #fff;
   border-radius: 10px 10px;
   box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.2);
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .ciudad {
@@ -138,7 +139,7 @@ span span {
   list-style: none;
 }
 
-.ciudad:hover{
+.ciudad:hover {
   cursor: pointer;
-  background-color: #EBEBED;
+  background-color: #ebebed;
 }

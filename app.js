@@ -7,30 +7,28 @@ const resultados = document.querySelector('.resultados')
 
 let resultado = {}
 let idCiudad = '3431366'
+const cityList = []
 
-document.addEventListener('DOMContentLoaded', () => {
-  fetchData()
-})
-
-resultados.addEventListener('click', e => {
-  ciudadSeleccionada(e)
-})
 
 // Obtener datos desde la URL
 const fetchData = async () => {
+  
   try {
     const resp = await fetch(`http://api.openweathermap.org/data/2.5/weather?id=${idCiudad}&appid=1f5afdd7df9072b6abfe95afde66cc8a&lang=es`)
     const data = await resp.json()
-    const api = await fetch('./city-list.json')
-    const cityList = await api.json()
-
-    console.log(data)
     pintarCards(data)
-    filtrarBusqueda(cityList)
 
   } catch (error) {
     console.log(error)
   }
+}
+
+const getCities = () => {
+  
+  fetch('./city-list.json')
+    .then(api => api.json())
+    .then(data => cityList.push(...data))
+
 }
 
 const pintarCards = data => {
@@ -54,33 +52,33 @@ const pintarResultado = () => {
   Object.values(resultado).forEach(element => {
     templateList.querySelector('.ciudad').textContent = element.name
     templateList.querySelector('.ciudad').dataset.id = element.id
-
     const clone = templateList.cloneNode(true)
     fragment.appendChild(clone)
   });
   resultados.appendChild(fragment)
   resultados.style.display = 'block'
-  
 }
 
-const filtrarBusqueda = (cityList) => {
-
-  search.addEventListener('keyup', e => {
-    let palabra = e.target.value
-    const result = cityList.filter(item => (item.name === palabra))
-
-    if (result) {
-      //console.log(result)
-      resultado = result
-      pintarResultado()
-    }
-    e.stopPropagation()
+// Funcion ejecutada para encontrar un match en citylist y e.target.value
+const findMatches = (wordToSearch, cityList) => {
+  return cityList.filter(place => {
+      const regex = new RegExp(wordToSearch, 'gi');
+      return place.name.match(regex)
   })
 }
 
+const displayMatches = (e) => {
+   
+  const matchedArray = findMatches(e.target.value, cityList);
+  if(matchedArray){
+    resultado = matchedArray
+    pintarResultado()
+  }
+}
+
 const ciudadSeleccionada = e => {
-  
-  if(e.target.classList.contains('ciudad')){
+
+  if (e.target.classList.contains('ciudad')) {
     pintarNuevo(e.target.parentElement)
   }
   e.stopPropagation()
@@ -89,6 +87,17 @@ const ciudadSeleccionada = e => {
 const pintarNuevo = objeto => {
   const stringCode = objeto.querySelector('li').dataset.id
   idCiudad = stringCode
-  console.log(idCiudad)
+  //console.log(idCiudad)
   fetchData()
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  fetchData(),
+  getCities()
+})
+
+resultados.addEventListener('click', e => {
+  ciudadSeleccionada(e)
+})
+
+search.addEventListener('keyup', displayMatches)
