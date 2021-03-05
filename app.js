@@ -12,7 +12,7 @@ const cityList = []
 
 // Obtener datos desde la URL
 const fetchData = async () => {
-  
+
   try {
     const resp = await fetch(`http://api.openweathermap.org/data/2.5/weather?id=${idCiudad}&appid=1f5afdd7df9072b6abfe95afde66cc8a&lang=es`)
     const data = await resp.json()
@@ -24,7 +24,7 @@ const fetchData = async () => {
 }
 
 const getCities = () => {
-  
+
   fetch('./city-list.json')
     .then(api => api.json())
     .then(data => cityList.push(...data))
@@ -56,24 +56,24 @@ const pintarResultado = () => {
     fragment.appendChild(clone)
   });
   resultados.appendChild(fragment)
-  resultados.style.display = 'block'
 }
 
 // Funcion ejecutada para encontrar un match en citylist y e.target.value
 const findMatches = (wordToSearch, cityList) => {
   return cityList.filter(place => {
-      const regex = new RegExp(wordToSearch, 'gi');
-      return place.name.match(regex)
+    const regex = new RegExp(wordToSearch, 'gi');
+    return place.name.match(regex)
   })
 }
 
 const displayMatches = (e) => {
-   
+  resultados.style.display = 'block'
   const matchedArray = findMatches(e.target.value, cityList);
-  if(matchedArray){
+  if (matchedArray) {
     resultado = matchedArray
     pintarResultado()
   }
+  e.stopPropagation()
 }
 
 const ciudadSeleccionada = e => {
@@ -93,7 +93,7 @@ const pintarNuevo = objeto => {
 
 document.addEventListener('DOMContentLoaded', () => {
   fetchData(),
-  getCities()
+    getCities()
 })
 
 resultados.addEventListener('click', e => {
