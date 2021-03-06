@@ -67,6 +67,7 @@ const findMatches = (wordToSearch, cityList) => {
 }
 
 const displayMatches = (e) => {
+  
   resultados.style.display = 'block'
   const matchedArray = findMatches(e.target.value, cityList);
   if (matchedArray) {

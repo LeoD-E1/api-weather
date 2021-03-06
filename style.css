@@ -1,36 +1,45 @@
 html,
 body {
   margin: 0;
-  background: #8e2de2; /* fallback for old browsers */
+  background: #0b486b; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
-    #4a00e0,
-    #8e2de2
+    #f56217,
+    #0b486b
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
     to right,
-    #4a00e0,
-    #8e2de2
+    #f56217,
+    #0b486b
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
   font-family: "Roboto", sans-serif;
   overflow-x: hidden;
 }
 
-.container{
+.title {
+  color: #fff;
+  display: inline-block;
+}
+
+.container {
+  text-align: center;
   padding: 20px;
 }
 
-#cards{
-  margin-top: 5%;
+#cards {
+  position: relative;
+  left: 5%;
+  justify-content: center;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
+  max-width: 90%;
 }
 
 .card {
   padding: 5px 30px;
-  width: 330px;
+  width: 300px;
   height: auto;
   border-radius: 3px;
   background-color: #fff;
@@ -56,17 +65,11 @@ h4 {
   position: relative;
 }
 
-.title {
-  padding: 5px;
-  margin: 0 auto;
-  color: #fff;
-}
-
 h1 {
-  float: right;
+  float: left;
   color: #666;
   font-weight: 300;
-  font-size: 6.59375em;
+  font-size: 4.59375em;
   line-height: 0.2em;
   animation: up 1s cubic-bezier(0.39, 0, 0.38, 1) 0.2s;
   -webkit-animation: up 1s cubic-bezier(0.39, 0, 0.38, 1) 0.2s;
@@ -74,7 +77,7 @@ h1 {
 
 h2 {
   font-weight: 300;
-  font-size: 2.25em;
+  font-size: 2.55em;
   animation: up 1s cubic-bezier(0.39, 0, 0.38, 1);
   -webkit-animation: up 1s cubic-bezier(0.39, 0, 0.38, 1);
 }
@@ -87,16 +90,6 @@ h3 {
   font-size: 1em;
   animation: up 1s cubic-bezier(0.39, 0, 0.38, 1) 0.1s;
   -webkit-animation: up 1s cubic-bezier(0.39, 0, 0.38, 1) 0.1s;
-}
-
-span {
-  margin-left: 24px;
-  color: #999;
-  font-weight: 300;
-}
-
-span span {
-  margin-left: 0;
 }
 
 @-webkit-keyframes up {
@@ -119,38 +112,42 @@ span span {
 /* SearchBar*/
 
 #Buscador {
-  margin: 3%;
-  width: 330px;
-  margin: 0 auto;
-  border-radius: 15px;
-  background-size: 24px;
+  display: inline;
+  margin-bottom: 25px;
+  width: 50%;
+  border-radius: 5px;
   border: transparent;
   padding: 10px 10px 10px 30px;
   outline: none;
 }
 
 .resultados {
+  background-color: #0b486b;
+  margin: 0 auto;
+  text-align: center;
+  width: 50%;
   display: none;
-  max-height: 300px;
-  max-width: 330px;
+  max-height: 50vh;
   z-index: 9;
   position: absolute;
-  margin-top: 20px;
-  padding: 10px;
-  background-color: #fff;
+  left: 25%;
   border-radius: 5px;
-  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.2);
-  overflow-y: auto;
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.2);
   overflow-x: hidden;
 }
 
 .ciudad {
   width: 100%;
-  padding: 5px;
+  padding: 15px;
   list-style: none;
+  box-sizing: border-box;
+  font-size: 17px;
+  font-weight: 300;
+  transition: all 200ms ease-in;
+  color: white;
 }
 
 .ciudad:hover {
   cursor: pointer;
-  background-color: #ebebed;
+  background-color: #f56217;
 }
