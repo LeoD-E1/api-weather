@@ -17,7 +17,6 @@ const fetchData = async () => {
     const resp = await fetch(`http://api.openweathermap.org/data/2.5/weather?id=${idCiudad}&appid=1f5afdd7df9072b6abfe95afde66cc8a&lang=es`)
     const data = await resp.json()
     pintarCards(data)
-
   } catch (error) {
     console.log(error)
   }
@@ -50,12 +49,14 @@ const pintarResultado = () => {
   resultados.innerHTML = ''
 
   Object.values(resultado).forEach(element => {
-    templateList.querySelector('.ciudad').textContent = element.name
+    templateList.querySelector('.ciudad').textContent = `${element.name}, ${element.country}`
     templateList.querySelector('.ciudad').dataset.id = element.id
+
     const clone = templateList.cloneNode(true)
     fragment.appendChild(clone)
   });
   resultados.appendChild(fragment)
+  resultados.style.display = 'block'
 }
 
 // Funcion ejecutada para encontrar un match en citylist y e.target.value
@@ -67,8 +68,7 @@ const findMatches = (wordToSearch, cityList) => {
 }
 
 const displayMatches = (e) => {
-  
-  resultados.style.display = 'block'
+
   const matchedArray = findMatches(e.target.value, cityList);
   if (matchedArray) {
     resultado = matchedArray
