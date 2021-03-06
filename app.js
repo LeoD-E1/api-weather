@@ -17,6 +17,7 @@ const fetchData = async () => {
     const resp = await fetch(`http://api.openweathermap.org/data/2.5/weather?id=${idCiudad}&appid=1f5afdd7df9072b6abfe95afde66cc8a&lang=es`)
     const data = await resp.json()
     pintarCards(data)
+    console.log(data)
   } catch (error) {
     console.log(error)
   }
@@ -33,6 +34,7 @@ const getCities = () => {
 const pintarCards = data => {
 
   const { coord, main, sys, weather } = data
+  templateCard.querySelector('.card').dataset.id = data.id
   templateCard.querySelector('h2').textContent = `${data.name} - ${sys.country}`
   templateCard.querySelector('h1').textContent = `${(main.temp - 273.15).toFixed(1)}°C`
   templateCard.querySelectorAll('h3')[0].textContent = `${weather[0].main}: ${weather[0].description}`
