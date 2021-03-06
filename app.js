@@ -56,7 +56,6 @@ const pintarResultado = () => {
     fragment.appendChild(clone)
   });
   resultados.appendChild(fragment)
-  resultados.style.display = 'block'
 }
 
 // Funcion ejecutada para encontrar un match en citylist y e.target.value
@@ -68,7 +67,7 @@ const findMatches = (wordToSearch, cityList) => {
 }
 
 const displayMatches = (e) => {
-
+  resultados.style.display = 'block'
   const matchedArray = findMatches(e.target.value, cityList);
   if (matchedArray) {
     resultado = matchedArray
@@ -78,9 +77,10 @@ const displayMatches = (e) => {
 }
 
 const ciudadSeleccionada = e => {
-
+  
   if (e.target.classList.contains('ciudad')) {
     pintarNuevo(e.target.parentElement)
+    resultados.style.display = 'none'
   }
   e.stopPropagation()
 }

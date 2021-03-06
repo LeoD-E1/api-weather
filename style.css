@@ -26,11 +26,11 @@ body {
   text-align: center;
   padding: 20px;
 }
+/* Tarjetas del clima */
 
 #cards {
   position: relative;
   left: 5%;
-  justify-content: center;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
@@ -85,7 +85,7 @@ h2 {
 h3 {
   float: left;
   margin-right: 33px;
-  color: #777;
+  color: #333;
   font-weight: 400;
   font-size: 1em;
   animation: up 1s cubic-bezier(0.39, 0, 0.38, 1) 0.1s;
@@ -126,7 +126,7 @@ h3 {
   margin: 0 auto;
   text-align: center;
   width: 50%;
-  display: none;
+  
   max-height: 50vh;
   z-index: 9;
   position: absolute;
