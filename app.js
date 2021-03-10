@@ -28,7 +28,6 @@ const getCities = () => {
   fetch('./city-list.json')
     .then(api => api.json())
     .then(data => cityList.push(...data))
-
 }
 
 const pintarCards = data => {
@@ -44,6 +43,7 @@ const pintarCards = data => {
   const clone = templateCard.cloneNode(true)
   fragment.appendChild(clone)
   cards.appendChild(fragment)
+
 }
 
 // Pintar Resultado de la Busqueda
@@ -104,3 +104,11 @@ resultados.addEventListener('click', e => {
 })
 
 search.addEventListener('keyup', displayMatches)
+
+cards.addEventListener('click', (e) => {
+  if(e.target.classList.contains('card')){
+    const id_code = e.target.dataset.id
+    //showModal(id_code)
+  }
+  e.stopPropagation()
+})
