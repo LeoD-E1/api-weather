@@ -109,6 +109,11 @@ cards.addEventListener('click', (e) => {
   if(e.target.classList.contains('card')){
     const id_code = e.target.dataset.id
     //showModal(id_code)
+    console.log(id_code)
   }
   e.stopPropagation()
 })
+
+const showModal = () => {
+  
+}
