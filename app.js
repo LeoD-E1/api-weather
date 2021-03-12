@@ -6,7 +6,9 @@ const templateList = document.getElementById('template-list').content
 const resultados = document.querySelector('.resultados')
 
 let resultado = {}
+let lang = 'es'
 let idCiudad = '3431366'
+const api_id = '1f5afdd7df9072b6abfe95afde66cc8a'
 const cityList = []
 
 
@@ -14,10 +16,10 @@ const cityList = []
 const fetchData = async () => {
 
   try {
-    const resp = await fetch(`http://api.openweathermap.org/data/2.5/weather?id=${idCiudad}&appid=1f5afdd7df9072b6abfe95afde66cc8a&lang=es`)
+    const resp = await fetch(`http://api.openweathermap.org/data/2.5/weather?id=${idCiudad}&appid=${api_id}&lang=${lang}`)
     const data = await resp.json()
     pintarCards(data)
-    console.log(data)
+  
   } catch (error) {
     console.log(error)
   }
@@ -43,7 +45,6 @@ const pintarCards = data => {
   const clone = templateCard.cloneNode(true)
   fragment.appendChild(clone)
   cards.appendChild(fragment)
-
 }
 
 // Pintar Resultado de la Busqueda
@@ -104,16 +105,3 @@ resultados.addEventListener('click', e => {
 })
 
 search.addEventListener('keyup', displayMatches)
-
-cards.addEventListener('click', (e) => {
-  if(e.target.classList.contains('card')){
-    const id_code = e.target.dataset.id
-    //showModal(id_code)
-    console.log(id_code)
-  }
-  e.stopPropagation()
-})
-
-const showModal = () => {
-  
-}
