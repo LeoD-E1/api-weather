@@ -8,7 +8,7 @@ const resultados = document.querySelector('.resultados')
 let resultado = {}
 let lang = 'es'
 let idCiudad = '3431366'
-const api_id = '1f5afdd7df9072b6abfe95afde66cc8a'
+const api_id = '1f5afdd7df9072b6abfe95afde66cc8a';
 const cityList = []
 
 
@@ -19,7 +19,7 @@ const fetchData = async () => {
     const resp = await fetch(`http://api.openweathermap.org/data/2.5/weather?id=${idCiudad}&appid=${api_id}&lang=${lang}`)
     const data = await resp.json()
     pintarCards(data)
-  
+
   } catch (error) {
     console.log(error)
   }
@@ -80,7 +80,7 @@ const displayMatches = (e) => {
 }
 
 const ciudadSeleccionada = e => {
-  
+
   if (e.target.classList.contains('ciudad')) {
     pintarNuevo(e.target.parentElement)
     resultados.style.display = 'none'
