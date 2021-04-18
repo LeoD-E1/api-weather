@@ -1,14 +1,15 @@
+import { apiId } from "./modules/config.js";
 const templateCard = document.getElementById('template-card').content
 const fragment = document.createDocumentFragment()
 const cards = document.getElementById('cards')
 const search = document.getElementById('Buscador')
 const templateList = document.getElementById('template-list').content
-const resultados = document.querySelector('.resultados')
+const resultados = document.querySelector('.resultados');
 
 let resultado = {}
 let lang = 'es'
 let idCiudad = '3431366'
-const api_id = '1f5afdd7df9072b6abfe95afde66cc8a';
+
 const cityList = []
 
 
@@ -16,7 +17,7 @@ const cityList = []
 const fetchData = async () => {
 
   try {
-    const resp = await fetch(`http://api.openweathermap.org/data/2.5/weather?id=${idCiudad}&appid=${api_id}&lang=${lang}`)
+    const resp = await fetch(`http://api.openweathermap.org/data/2.5/weather?id=${idCiudad}&appid=${apiId}&lang=${lang}`)
     const data = await resp.json()
     pintarCards(data)
 
