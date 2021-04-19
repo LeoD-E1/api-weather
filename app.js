@@ -1,4 +1,3 @@
-import { apiId } from "./modules/config.js";
 const templateCard = document.getElementById('template-card').content
 const fragment = document.createDocumentFragment()
 const cards = document.getElementById('cards')
@@ -7,6 +6,7 @@ const templateList = document.getElementById('template-list').content
 const resultados = document.querySelector('.resultados');
 
 let resultado = {}
+const apiId = "1f5afdd7df9072b6abfe95afde66cc8a";
 let lang = 'es'
 let idCiudad = '3431366'
 
