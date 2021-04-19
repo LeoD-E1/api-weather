@@ -17,7 +17,7 @@ const cityList = []
 const fetchData = async () => {
 
   try {
-    const resp = await fetch(`http://api.openweathermap.org/data/2.5/weather?id=${idCiudad}&appid=${apiId}&lang=${lang}`)
+    const resp = await fetch(`https://api.openweathermap.org/data/2.5/weather?id=${idCiudad}&appid=${apiId}&lang=${lang}`)
     const data = await resp.json()
     pintarCards(data)
 
