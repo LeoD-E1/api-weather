@@ -2,20 +2,18 @@ html,
 body {
   margin: 0;
   font-family: "Roboto", sans-serif;
-  overflow-x: hidden;
-  
+  overflow: hidden;
 }
 
 .title {
-  color: #FFF;
+  color: #fff;
   display: inline-block;
 }
 
-.img-back{
+.img-back {
   height: 100vh;
   width: 100vw;
   object-fit: cover;
-  
 }
 
 .container {
@@ -24,7 +22,11 @@ body {
   left: 0;
   text-align: center;
   background-color: transparent;
+  align-items: center;
+  justify-content: center;
   height: 100vh;
+  width: 100%;
+  overflow-y: auto;
 }
 /* Tarjetas del clima */
 
@@ -57,7 +59,7 @@ body {
   border: solid 1px orangered;
 }
 
-.card-header{
+.card-header {
   box-sizing: border-box;
 }
 
@@ -70,7 +72,6 @@ body {
     height: auto;
   }
 }
-
 
 h1 {
   float: left;
@@ -131,7 +132,7 @@ h3 {
 }
 
 .resultados {
-  background-color: #0b486b;
+  background-color: #7f0130;
   margin: 0 auto;
   text-align: center;
   width: 50%;
